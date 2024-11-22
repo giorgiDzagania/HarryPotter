@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="8dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="6dp"
+    app:cardUseCompatPadding="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/lightBlue">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/movieCoverImage"
+            android:layout_width="match_parent"
+            android:layout_height="320dp"
+            android:layout_margin="12dp"
+            android:background="@drawable/rounded_corner"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_launcher_background" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/titleTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:fontFamily="@font/courier_prime_bold"
+            android:text="Title:"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/movieCoverImage" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/movieTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:fontFamily="@font/medievalsharp"
+            android:letterSpacing="0.1"
+            android:textColor="@color/brown"
+            android:textSize="18sp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/titleTv"
+            app:layout_constraintStart_toEndOf="@id/titleTv"
+            app:layout_constraintTop_toTopOf="@id/titleTv"
+            tools:text="Movie title" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/ratingTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/courier_prime_bold"
+            android:text="Rating:"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@id/titleTv"
+            app:layout_constraintTop_toBottomOf="@id/titleTv" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/movieRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:fontFamily="@font/medievalsharp"
+            android:textColor="@color/red"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/ratingTv"
+            app:layout_constraintStart_toEndOf="@id/ratingTv"
+            app:layout_constraintTop_toTopOf="@id/ratingTv"
+            tools:text="9.2" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/releaseDateTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/courier_prime_bold"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@id/ratingTv"
+            app:layout_constraintTop_toBottomOf="@id/ratingTv"
+            android:text="Release Date:" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/movieReleaseDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toBottomOf="@id/releaseDateTv"
+            app:layout_constraintStart_toEndOf="@id/releaseDateTv"
+            app:layout_constraintTop_toTopOf="@id/releaseDateTv"
+            tools:text="11/12/2005"
+            android:maxLines="1"
+            android:ellipsize="end"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/movieBtnDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/background_image_shape"
+            android:text="Details"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/movieReleaseDate" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

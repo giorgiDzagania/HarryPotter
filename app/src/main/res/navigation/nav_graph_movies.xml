@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_movies"
+    app:startDestination="@id/harryPotterMoviesFragment">
+
+    <fragment
+        android:id="@+id/harryPotterMoviesFragment"
+        android:name="com.madeit.harrypotter.presentation.hpMovies.HarryPotterMoviesFragment"
+        android:label="HarryPotterMoviesFragment"
+        tools:layout="@layout/fragment_harry_potter_movies">
+        <action
+            android:id="@+id/action_harryPotterMoviesFragment_to_harryPotterMovieDetailsFragment"
+            app:destination="@id/harryPotterMovieDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/harryPotterMovieDetailsFragment"
+        android:name="com.madeit.harrypotter.presentation.hpMoiesDetails.HarryPotterMovieDetailsFragment"
+        android:label="HarryPotterMovieDetailsFragment"
+        tools:layout="@layout/fragment_harry_pottter_movie_details">
+        <argument
+            android:name="movieId"
+            app:argType="string" />
+    </fragment>
+</navigation>
