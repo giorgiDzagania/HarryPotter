@@ -1,9 +1,9 @@
 package com.madeit.harrypotter.data
 
 import com.madeit.harrypotter.data.model.BookDataWrapper
-import com.madeit.harrypotter.data.model.HarryMovies
+import com.madeit.harrypotter.data.model.HarryPotterAllMoviesList
 import com.madeit.harrypotter.data.model.HarryPotterList
-import com.madeit.harrypotter.data.model.Movie
+import com.madeit.harrypotter.data.model.MovieDetails
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -19,9 +19,9 @@ interface HarryPotterApi {
 
     // For Movies
     @GET("movies")
-    suspend fun getHarryPotterMovies(): Response<HarryMovies>
+    suspend fun getHarryPotterMovies(): Response<HarryPotterAllMoviesList>
 
     @GET("movies/{id}")
-    suspend fun getHpMovieDetailsById(@Path("id") id: String): Response<Movie>
+    suspend fun getHpMovieDetailsById(@Path("id") id: String): Response<MovieDetails>
 }
 

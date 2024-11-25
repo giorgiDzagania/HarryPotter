@@ -2,20 +2,19 @@ package com.madeit.harrypotter.data.model
 
 import com.google.gson.annotations.SerializedName
 
-data class HarryMovies(
-    val data: List<Movie>,
+data class HarryPotterAllMoviesList(
+    val data: List<Movies>,
 )
 
-data class Movie(
+data class Movies(
     val id: String?,
-    val attributes: MovieAttributes?
+    val attributes: Attributes?,
 )
 
-data class MovieAttributes(
+data class Attributes(
     val title: String?,
+    val poster: String?,
+    val rating: String?,
     @SerializedName("release_date")
     val releaseDate: String?,
-    val rating: String?,
-    val poster: String?,
-    val summary: String? = ""
 )

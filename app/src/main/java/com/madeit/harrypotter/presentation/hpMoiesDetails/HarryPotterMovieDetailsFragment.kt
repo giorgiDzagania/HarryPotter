@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import com.madeit.harrypotter.data.model.MovieData
 import com.madeit.harrypotter.databinding.FragmentHarryPottterMovieDetailsBinding
 import kotlinx.coroutines.launch
 
@@ -35,32 +36,35 @@ class HarryPotterMovieDetailsFragment : Fragment() {
     }
 
     private fun getIdOfCurrentMovie() {
-        val curMovie = args.movieId
-        if (curMovie.isNullOrEmpty()) {
+        val movieId = args.movieId
+        if (movieId.isNullOrEmpty()) {
             Log.e("MovieDetailsFragment", "Movie ID is null or empty!")
         } else {
-            Log.d("MovieDetailsFragment", "Received Movie ID: $curMovie")
-            hpMovieDetailsViewModel.getHpMovieDetailsById(curMovie)
+            Log.d("MovieDetailsFragment", "Received Movie ID: $movieId")
+            hpMovieDetailsViewModel.getHpMovieDetailsById(movieId)
         }
     }
 
-    private fun collectBookDetails(){
-        lifecycleScope.launch{
-           displayBookInfo()
-        }
-    }
-
-    private suspend fun displayBookInfo(){
-        hpMovieDetailsViewModel.movieDetails.collect { movieData ->
-            movieData?.let {
-                with(binding){
-                    Glide.with(movieImage)
-                        .load(it.attributes?.poster)
-                        .into(movieImage)
-                    movieTitle.text = it.attributes?.title
-                    movieSummery.text = it.attributes?.summary
+    private fun collectBookDetails() {
+        lifecycleScope.launch {
+            hpMovieDetailsViewModel.movieDetails.collect { movieData ->
+                if (movieData != null) {
+                    updateUI(movieData)
+                } else {
+                    Log.e("MovieDetailsFragment", "Movie data is null. Could not update UI.")
                 }
             }
+        }
+    }
+
+    private fun updateUI(movieData: MovieData) {
+        with(binding) {
+            Glide.with(movieImage)
+                .load(movieData.attributes?.poster)
+                .into(movieImage)
+
+            movieTitle.text = movieData.attributes?.title ?: "Title not available"
+            movieSummery.text = movieData.attributes?.summary ?: "Summary not available"
         }
     }
 

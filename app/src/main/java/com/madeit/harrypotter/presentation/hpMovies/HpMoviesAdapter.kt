@@ -5,16 +5,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.madeit.harrypotter.data.model.Movie
+import com.madeit.harrypotter.data.model.Movies
 import com.madeit.harrypotter.databinding.ItemAllMoviesBinding
 
 class HpMoviesAdapter : RecyclerView.Adapter<HpMoviesAdapter.HpMoviesViewHolder>() {
 
-    private var hpMovies = listOf<Movie>()
+    private var hpMovies = listOf<Movies>()
 
-    var onDetailBtnClick: (movie: Movie) -> Unit = {}
+    var onDetailBtnClick: (movie: Movies) -> Unit = {}
 
-    fun updateMoviesList(newHarryPotter: List<Movie>){
+    fun updateMoviesList(newHarryPotter: List<Movies>) {
         val movieCallBack = HpMoviesCallBack(hpMovies, newHarryPotter)
         val diffResult = DiffUtil.calculateDiff(movieCallBack)
         hpMovies = newHarryPotter
@@ -22,8 +22,13 @@ class HpMoviesAdapter : RecyclerView.Adapter<HpMoviesAdapter.HpMoviesViewHolder>
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HpMoviesViewHolder {
-        return HpMoviesViewHolder(ItemAllMoviesBinding.inflate(LayoutInflater.from(
-            parent.context),parent,false))
+        return HpMoviesViewHolder(
+            ItemAllMoviesBinding.inflate(
+                LayoutInflater.from(
+                    parent.context
+                ), parent, false
+            )
+        )
     }
 
     override fun onBindViewHolder(holder: HpMoviesViewHolder, position: Int) {
@@ -33,8 +38,8 @@ class HpMoviesAdapter : RecyclerView.Adapter<HpMoviesAdapter.HpMoviesViewHolder>
     override fun getItemCount(): Int = hpMovies.size
 
     class HpMoviesCallBack(
-        private val oldList: List<Movie>,
-        private val newList: List<Movie>
+        private val oldList: List<Movies>,
+        private val newList: List<Movies>
     ) : DiffUtil.Callback() {
         override fun getOldListSize(): Int = oldList.size
         override fun getNewListSize(): Int = newList.size
@@ -54,7 +59,7 @@ class HpMoviesAdapter : RecyclerView.Adapter<HpMoviesAdapter.HpMoviesViewHolder>
 
     inner class HpMoviesViewHolder(private val binding: ItemAllMoviesBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(movieData: Movie) = with(binding) {
+        fun bind(movieData: Movies) = with(binding) {
             val movie = movieData.attributes
             Glide.with(movieCoverImage)
                 .load(movie?.poster)

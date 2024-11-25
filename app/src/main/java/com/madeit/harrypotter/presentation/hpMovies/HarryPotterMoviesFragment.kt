@@ -38,7 +38,9 @@ class HarryPotterMoviesFragment : Fragment() {
         hpMoviesAdapter.onDetailBtnClick = { movie ->
             findNavController().navigate(
                 HarryPotterMoviesFragmentDirections.actionHarryPotterMoviesFragmentToHarryPotterMovieDetailsFragment(
-                    movie.id ?: ""))
+                    movie.id ?: ""
+                )
+            )
         }
     }
 

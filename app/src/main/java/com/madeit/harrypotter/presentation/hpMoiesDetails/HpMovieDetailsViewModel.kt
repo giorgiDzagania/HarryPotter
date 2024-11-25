@@ -3,7 +3,7 @@ package com.madeit.harrypotter.presentation.hpMoiesDetails
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.madeit.harrypotter.data.model.Movie
+import com.madeit.harrypotter.data.model.MovieData
 import com.madeit.harrypotter.data.repository.HarryPotterRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -12,8 +12,8 @@ import kotlinx.coroutines.launch
 class HpMovieDetailsViewModel : ViewModel() {
     private val harryPotterRepository = HarryPotterRepository()
 
-    private val _movieDetails = MutableStateFlow<Movie?>(null)
-    val movieDetails: StateFlow<Movie?> = _movieDetails
+    private val _movieDetails = MutableStateFlow<MovieData?>(null)
+    val movieDetails: StateFlow<MovieData?> = _movieDetails
 
     fun getHpMovieDetailsById(movieId: String) {
         Log.d("MovieDetailsViewModel", "Fetching details for movie ID: $movieId")
@@ -27,5 +27,4 @@ class HpMovieDetailsViewModel : ViewModel() {
             }
         }
     }
-
 }

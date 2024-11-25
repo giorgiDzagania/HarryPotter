@@ -2,11 +2,11 @@ package com.madeit.harrypotter.data.repository
 
 import android.util.Log
 import com.madeit.harrypotter.data.RetrofitInstance
+import com.madeit.harrypotter.data.model.Attributes
 import com.madeit.harrypotter.data.model.BookAttributes
 import com.madeit.harrypotter.data.model.BookData
-import com.madeit.harrypotter.data.model.HarryMovies
-import com.madeit.harrypotter.data.model.Movie
-import com.madeit.harrypotter.data.model.MovieAttributes
+import com.madeit.harrypotter.data.model.MovieData
+import com.madeit.harrypotter.data.model.Movies
 
 class HarryPotterRepository {
 
@@ -51,20 +51,18 @@ class HarryPotterRepository {
         }
     }
 
-    suspend fun getAllHarryPotterMovies(): List<Movie>? {
+    suspend fun getAllHarryPotterMovies(): List<Movies>? {
         return try {
             val response = api.getHarryPotterMovies()
             if (response.isSuccessful) {
-                // Safely map the response data to Movie objects
                 response.body()?.data?.map { movie ->
-                    Movie(
+                    Movies(
                         id = movie.id,
-                        attributes = MovieAttributes(
+                        attributes = Attributes(
                             title = movie.attributes?.title,
-                            releaseDate = movie.attributes?.releaseDate,
-                            rating = movie.attributes?.rating,
                             poster = movie.attributes?.poster,
-                            summary = movie.attributes?.summary
+                            rating = movie.attributes?.rating,
+                            releaseDate = movie.attributes?.releaseDate
                         )
                     )
                 }
@@ -76,17 +74,16 @@ class HarryPotterRepository {
         }
     }
 
-    suspend fun getHpMovieDetails(movieId: String): Movie? {
+    suspend fun getHpMovieDetails(movieId: String): MovieData? {
         return try {
-            val response = api.getHpMovieDetailsById(movieId)
+            val response = api.getHpMovieDetailsById(id = movieId)
             if (response.isSuccessful) {
-                response.body() // Accessing `attributes` here
+                val apiResponse = response.body()
+                apiResponse?.data
             } else {
-                Log.e("MovieRepository", "Error: ${response.message()}")
                 null
             }
         } catch (e: Exception) {
-            Log.e("MovieRepository", "Exception: ${e.message}")
             null
         }
     }
